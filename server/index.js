@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
       console.log(err); // Log error if query fails
     } else {
       res.send(results); // Send query results as response
-      console.log(results); // Log query results
+      // console.log(results); // Log query results
     }
   });
 });
