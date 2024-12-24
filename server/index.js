@@ -13,7 +13,12 @@ dotenv.config();
 const app = express();
 const port = process.env.PORT || 5000; // Set the port from environment variable or default to 5000
 
-app.use(cors()); // Enable CORS with specified options
+const corsOptions = {
+  origin: "*", // Allow requests from this origin
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+};
+
+app.use(cors(corsOptions)); // Enable CORS with specified options
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
 
