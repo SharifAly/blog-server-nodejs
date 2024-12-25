@@ -7,8 +7,6 @@ const router = express.Router();
 
 //TODO - Add a route to register a new user
 
-
-
 // Route to handle user login
 router.post("/login", async (req, res) => {
   try {
@@ -24,6 +22,7 @@ router.post("/login", async (req, res) => {
           reject(err); // Reject promise if error occurs
         } else {
           resolve(result); // Resolve promise with query result
+          console.log(email);
         }
       });
     });
@@ -59,6 +58,7 @@ router.post("/login", async (req, res) => {
       // Set token in HTTP-only cookie
       res.cookie("token", token, {
         httpOnly: true,
+        secure: true,
         maxAge: 10 * 60 * 60 * 1000, // 10 hours
       });
 
@@ -78,7 +78,6 @@ router.post("/login", async (req, res) => {
     });
   }
 });
-
 
 router.post("/register", (req, res) => {
   try {
