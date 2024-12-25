@@ -22,7 +22,6 @@ router.post("/login", async (req, res) => {
           reject(err); // Reject promise if error occurs
         } else {
           resolve(result); // Resolve promise with query result
-          console.log(email);
         }
       });
     });
