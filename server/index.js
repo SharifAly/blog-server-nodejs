@@ -23,6 +23,21 @@ app.use(cors(corsOptions)); // Enable CORS with specified options
 app.use(express.json()); // Parse JSON request bodies
 app.use(cookieParser()); // Parse cookies
 
+// OPTIONS-Preflight-Anfragen explizit behandeln
+app.options("*", (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "https://blog.sharif-aly.tech");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET, POST, OPTIONS, PUT, DELETE"
+  );
+  res.sendStatus(200); // Preflight ist erfolgreich
+});
+
 // Use the imported route modules
 app.use("/auth", authRoutes);
 app.use("/blog", blogRoutes);
