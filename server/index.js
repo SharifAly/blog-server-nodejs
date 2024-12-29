@@ -14,7 +14,7 @@ const app = express();
 const port = process.env.PORT || 5000; // Set the port from environment variable or default to 5000
 
 const corsOptions = {
-  origin: "*", // Allow requests from this origin
+  origin: "https://blog.sharif-aly.tech/", // Allow requests from this origin
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
