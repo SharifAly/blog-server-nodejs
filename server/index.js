@@ -16,6 +16,7 @@ const port = process.env.PORT || 5000; // Set the port from environment variable
 const corsOptions = {
   origin: "https://blog.sharif-aly.tech", // Allow requests from this origin
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  methods: "GET,POST,PUT,DELETE,OPTIONS",
 };
 
 app.use(cors(corsOptions)); // Enable CORS with specified options
