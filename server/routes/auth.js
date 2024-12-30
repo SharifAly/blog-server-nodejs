@@ -58,6 +58,9 @@ router.post("/login", async (req, res) => {
       res.cookie("token", token, {
         httpOnly: true,
         secure: true,
+        sameSite: "none", // Erlaubt Cross-Site-Cookies
+        domain: "blog.sharif-aly.tech", // Domain, auf der das Cookie verfügbar ist
+        path: "/", // Cookie auf allen Pfaden verfügbar machen
         maxAge: 10 * 60 * 60 * 1000, // 10 hours
       });
 
