@@ -34,12 +34,18 @@ router.post("/post", (req, res) => {
   const sql =
     "INSERT INTO blog.posts (title, category, image, body, fk_user_id) VALUES (?,?,?,?,?)"; // SQL query to insert a new post
   const token = req.cookies.token; // Get JWT token from cookies
+  console.log(token);
+
   const decode = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify and decode the token
+  console.log(decode);
+
   const userId = decode.userId; // Get user ID from decoded token
   console.log(userId);
 
   db.query(sql, [title, category, image, body, userId], (err, result) => {
     if (err) {
+      console.log(token, decode, userId);
+
       res.status(500).send(err.message); // Send error if query fails
     } else {
       res.send(result); // Send query result as response
