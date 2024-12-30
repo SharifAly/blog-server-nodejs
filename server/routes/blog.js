@@ -36,6 +36,8 @@ router.post("/post", (req, res) => {
   const token = req.cookies.token; // Get JWT token from cookies
   const decode = jwt.verify(token, process.env.JWT_SECRET_KEY); // Verify and decode the token
   const userId = decode.userId; // Get user ID from decoded token
+  console.log(userId);
+
   db.query(sql, [title, category, image, body, userId], (err, result) => {
     if (err) {
       res.status(500).send(err.message); // Send error if query fails
