@@ -126,4 +126,17 @@ router.post("/register", (req, res) => {
   }
 });
 
+router.get("/auth/check", (req, res) => {
+  const token = req.cookies.token;
+  if (!token) {
+    return res.status(401).send({ message: "Not authenticated" });
+  }
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
+    res.status(200).send({ userId: decoded.userId });
+  } catch (err) {
+    res.status(401).send({ message: "Invalid token" });
+  }
+});
+
 export default router;
